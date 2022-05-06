@@ -3,8 +3,17 @@
         "browser": true,
         "es2021": true
     },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".ts", ".tsx"],
+                "moduleDirectory": ["src", "node_modules"]
+            }
+        }
+    },
     "extends": [
         "plugin:react/recommended",
+        "plugin:import/typescript",
         "airbnb"
     ],
     "parser": "@typescript-eslint/parser",
@@ -20,9 +29,20 @@
         "@typescript-eslint"
     ],
     "rules": {
+        
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ]
     }
 }
