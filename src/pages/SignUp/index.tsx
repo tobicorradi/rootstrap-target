@@ -6,21 +6,14 @@ import {
   Button, InputField, SelectInput, PhoneSection, Title,
 } from '../../components/common';
 import { genderOptions } from '../../constants/genderOptions';
-
-interface SignUpInputs {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  gender: string;
-}
+import { SignUpInputsType } from '../../types/userInputsTypes';
 
 function SignUp() {
   const {
     register, handleSubmit, formState: { errors },
   } = useForm({ resolver: yupResolver(signUpSchema) });
 
-  const onSubmit: SubmitHandler<SignUpInputs> = (data) => {
+  const onSubmit: SubmitHandler<SignUpInputsType> = (data) => {
     console.log(data);
   };
   return (

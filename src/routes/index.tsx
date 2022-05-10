@@ -1,16 +1,9 @@
-import { ReactElement } from 'react';
 import SignUp from '../pages/SignUp';
 import LogIn from '../pages/LogIn';
 import Home from '../pages/Home';
+import { RouteType } from '../types/routesTypes';
 
-interface Route {
-  path: string;
-  component: ReactElement;
-  private?: boolean;
-  exact?: boolean;
-}
-
-const routes: Array<Route> = [
+const routes: Array<RouteType> = [
   {
     path: '/',
     component: <Home />,
