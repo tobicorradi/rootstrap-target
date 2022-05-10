@@ -15,7 +15,7 @@ function SelectInput({
   return (
     <div className="flex flex-col">
       <label className="label" htmlFor={id}>{label}</label>
-      <select className="appearance-none input" id={id}>
+      <select className="uppercase appearance-none input" id={id}>
         <option disabled selected hidden>{placeholder}</option>
         {optionValues?.map((option) => (
           <option key={option.id} value={option.value}>{option.text}</option>

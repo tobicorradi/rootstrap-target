@@ -17,7 +17,7 @@
   @apply font-semibold bg-transparent text-target-black normal-case;
 }
 .input{
-  @apply p-3 text-xs text-center uppercase border tracking-[3px] placeholder:text-gray-400 border-target-black;
+  @apply p-3 text-xs text-center placeholder:uppercase border placeholder:tracking-[3px] placeholder:text-gray-400 border-target-black;
 }
 .label{
   @apply mb-1 font-semibold tracking-[3px] uppercase text-sm
