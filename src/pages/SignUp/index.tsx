@@ -5,6 +5,7 @@ import { signUpSchema } from '../../schemas';
 import {
   Button, InputField, SelectInput, PhoneSection, Title,
 } from '../../components/common';
+import { genderOptions } from '../../constants/genderOptions';
 
 interface SignUpInputs {
   name: string;
@@ -18,12 +19,6 @@ function SignUp() {
   const {
     register, handleSubmit, formState: { errors },
   } = useForm({ resolver: yupResolver(signUpSchema) });
-
-  const genderOptions = [
-    { id: 1, text: 'Male', value: 'male' },
-    { id: 2, text: 'Female', value: 'female' },
-    { id: 3, text: 'Other', value: 'other' },
-  ];
 
   const onSubmit: SubmitHandler<SignUpInputs> = (data) => {
     console.log(data);
