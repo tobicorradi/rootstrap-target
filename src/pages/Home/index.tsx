@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   Button, InputField, Logo, Paragraph, PhoneSection, Title, Subtitle,
 } from '../../components/common';
@@ -16,7 +17,7 @@ function Home() {
           your interest: Travel, Dating, Music, etc and start conecting
           with others who share your interest."
         />
-        <form className="w-full mt-8 mb-4 md:w-4/12 space-y-7">
+        <form className="w-full mt-8 mb-4 md:w-[250px]  space-y-7">
           <InputField label="Email" id="email" type="email" />
           <InputField label="Password" id="password" type="password" />
           <div>
@@ -26,7 +27,9 @@ function Home() {
         </form>
         <Button type="button" text="Connect with Facebook" variant="secondary" />
         <hr />
-        <Button type="button" text="Sign Up" variant="secondary" />
+        <Link to="/sign-up">
+          <Button type="button" text="Sign Up" variant="secondary" />
+        </Link>
       </div>
       <PhoneSection />
     </section>
