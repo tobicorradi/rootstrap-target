@@ -3,7 +3,7 @@ export interface SignUpInputsType {
     email: string;
     password: string;
     confirmPassword: string;
-    gender: string;
+    gender: 'male' | 'female' | 'other';
 }
 
 export interface LogInInputsType {

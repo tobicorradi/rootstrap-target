@@ -2,20 +2,21 @@ import SignUp from '../pages/SignUp';
 import LogIn from '../pages/LogIn';
 import Home from '../pages/Home';
 import { RouteType } from '../types/routesTypes';
+import { RoutherPaths } from '../constants/routerPaths';
 
 const routes: Array<RouteType> = [
   {
-    path: '/',
+    path: RoutherPaths.HOME,
     component: <Home />,
     private: true,
     exact: true,
   },
   {
-    path: '/login',
+    path: RoutherPaths.LOG_IN,
     component: <LogIn />,
   },
   {
-    path: '/sign-up',
+    path: RoutherPaths.SIGN_UP,
     component: <SignUp />,
   },
 ];
