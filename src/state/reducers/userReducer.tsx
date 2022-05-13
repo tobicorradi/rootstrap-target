@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { signUpFulfilled, signUpPending, signUpRejected } from '../actions/userActions';
-import RequestStatus from '../../constants/requestStatus';
+import { RequestStatus } from '../../constants/requestStatus';
 
 const initialState = {
   status: null,
@@ -15,21 +15,22 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [signUpFulfilled]: (state, { payload }) => {
-      state.userData = payload.data;
+    [signUpFulfilled.toString()]: (state, { payload }) => {
+      state.userData = payload;
       state.status = RequestStatus.FULFILLED;
-      state.isAuthenticated = true;
+      state.requestErrors = {};
     },
-    [signUpPending]: (state) => {
+    [signUpPending.toString()]: (state) => {
       state.status = RequestStatus.PENDING;
     },
-    [signUpRejected]: (state, { payload }) => {
+    [signUpRejected.toString()]: (state, { payload }) => {
       state.status = RequestStatus.REJECTED;
       state.requestErrors = payload.errors;
     },
-    reset: () => initialState,
   },
 });
+
+export const usernameSelector = (state) => state.user.userData.username;
 
 export const statusSelector = (state) => state.user.status;
 

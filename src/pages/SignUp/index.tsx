@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { signUpSchema } from '../../schemas';
 import {
   Button, InputField, SelectInput, PhoneSection, Title,
@@ -11,7 +10,7 @@ import { genderOptions } from '../../constants/genderOptions';
 import { SignUpInputsType } from '../../types/userInputsTypes';
 import { signUp } from '../../state/actions/userActions';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
-import RequestStatus from '../../constants/requestStatus';
+import { RequestStatus } from '../../constants/requestStatus';
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -27,17 +26,16 @@ function SignUp() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(signUpSchema),
-  });
+  } = useForm({ resolver: yupResolver(signUpSchema) });
 
-  const onSubmit: SubmitHandler<SignUpInputsType> = (data) => {
-    dispatch(signUp(data));
+  const onSubmit: SubmitHandler<SignUpInputsType> = async (data: SignUpInputsType) => {
+    try {
+      await dispatch(signUp(data)).unwrap();
+      navigate('/login');
+    } catch (e) {
+      console.log(e);
+    }
   };
-
-  useEffect(() => {
-    if (status === RequestStatus.FULFILLED) navigate('/login');
-  }, [status]);
 
   return (
     <section className="flex h-full">
@@ -86,7 +84,7 @@ function SignUp() {
           <Button type="submit" text={`${isRequestLoading ? 'Loading...' : 'Sign Up'}`} variant="primary" />
         </form>
         <hr />
-        <Link to="/">
+        <Link to="/login">
           <Button type="button" text="Sign In" variant="secondary" />
         </Link>
       </div>

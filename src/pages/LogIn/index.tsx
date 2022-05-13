@@ -1,22 +1,35 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   Button, InputField, Logo, Paragraph, PhoneSection, Title, Subtitle,
 } from '../../components/common';
+import { usernameSelector } from '../../state/reducers/userReducer';
 
 function LogIn() {
+  const username = useSelector(usernameSelector);
   return (
     <section className="flex h-full">
       <div className="text-center bg-white half-section">
         <Logo />
-        <Title text="Target MVD" />
-        <Subtitle text="Find people near you & Connect" />
-        <Paragraph
-          maxWidth="sm"
-          size="xs"
-          text="Create a  target  wherever on the map, specify
-          your interest: Travel, Dating, Music, etc and start conecting
-          with others who share your interest."
-        />
+        {username ? (
+          <>
+            <Title text={`¡Hi, ${username}!`} />
+            <Subtitle text="Welcome to Target" />
+          </>
+        ) : (
+          <>
+            <Title text="Target MVD" />
+            <Subtitle text="Find people near you & Connect" />
+            <Paragraph
+              maxWidth="sm"
+              size="xs"
+              text="Create a  target  wherever on the map, specify
+              your interest: Travel, Dating, Music, etc and start conecting
+              with others who share your interest."
+            />
+          </>
+        )}
+
         <form className="w-full mt-8 mb-4 md:w-[250px]  space-y-7">
           <InputField label="Email" id="email" type="email" />
           <InputField label="Password" id="password" type="password" />
@@ -29,9 +42,6 @@ function LogIn() {
         <hr />
         <Link to="/sign-up">
           <Button type="button" text="Sign Up" variant="secondary" />
-        </Link>
-        <Link to="/">
-          <Button type="button" text="Mapa" variant="secondary" />
         </Link>
       </div>
       <PhoneSection />
