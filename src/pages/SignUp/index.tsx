@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,9 +20,9 @@ function SignUp() {
   const status = useSelector(statusSelector);
   const requestErrors = useSelector(requestErrorsSelector);
 
-  const isRequestLoading = status === RequestStatus.PENDING;
+  const isRequestLoading = useMemo(() => status === RequestStatus.PENDING, [status]);
 
-  const errorsExist = Object.entries(requestErrors).length > 0;
+  const errorsExist = useMemo(() => Object.entries(requestErrors).length > 0, [requestErrors]);
 
   const {
     register,
