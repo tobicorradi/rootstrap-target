@@ -13,6 +13,7 @@ import { signUp } from '../../state/actions/userActions';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
 import { RequestStatus } from '../../constants/requestStatus';
 import { RoutherPaths } from '../../constants/routerPaths';
+import { getFormErrors } from '../../utils/getFormErrors';
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -21,8 +22,6 @@ function SignUp() {
   const requestErrors = useSelector(requestErrorsSelector);
 
   const isRequestLoading = useMemo(() => status === RequestStatus.PENDING, [status]);
-
-  const errorsExist = useMemo(() => Object.entries(requestErrors).length > 0, [requestErrors]);
 
   const {
     register,
@@ -43,21 +42,19 @@ function SignUp() {
     <section className="flex h-full">
       <div className="text-center bg-white half-section">
         <Title text="Sign Up" />
-        {errorsExist
-          && <span className="error-message">{requestErrors?.full_messages[0]}</span>}
         <form onSubmit={handleSubmit(onSubmit)} className="w-full mt-8 mb-4 md:w-[250px] space-y-7">
           <InputField
             id="username"
             type="text"
             label="Name"
-            error={errors.username?.message}
+            error={getFormErrors(requestErrors, errors, 'username')}
             register={register('username')}
           />
           <InputField
             id="email"
             type="email"
             label="Email"
-            error={errors.email?.message}
+            error={getFormErrors(requestErrors, errors, 'email')}
             register={register('email')}
           />
           <InputField
@@ -65,14 +62,14 @@ function SignUp() {
             type="password"
             label="Password"
             placeholder="min. 8 characters long"
-            error={errors.password?.message}
+            error={getFormErrors(requestErrors, errors, 'password')}
             register={register('password')}
           />
           <InputField
             id="confirmPassword"
             type="password"
             label="Confirm Password"
-            error={errors.confirmPassword?.message}
+            error={getFormErrors(requestErrors, errors, 'confirmPassword')}
             register={register('confirmPassword')}
           />
           <SelectInput
@@ -80,7 +77,7 @@ function SignUp() {
             label="Gender"
             placeholder="Select your gender"
             optionValues={genderOptions}
-            error={errors.gender?.message}
+            error={getFormErrors(requestErrors, errors, 'gender')}
             register={register('gender')}
           />
           <Button type="submit" text={`${isRequestLoading ? 'Loading...' : 'Sign Up'}`} variant="primary" />
