@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSelector, useDispatch } from 'react-redux';
@@ -86,9 +86,7 @@ function SignUp() {
           <Button type="submit" text={`${isRequestLoading ? 'Loading...' : 'Sign Up'}`} variant="primary" />
         </form>
         <hr />
-        <Link to={RoutherPaths.LOG_IN}>
-          <Button type="button" text="Sign In" variant="secondary" />
-        </Link>
+        <Button onClick={() => navigate(RoutherPaths.LOG_IN)} type="button" text="Sign In" variant="secondary" />
       </div>
       <PhoneSection />
     </section>

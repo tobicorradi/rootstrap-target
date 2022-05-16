@@ -1,12 +1,15 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Button, InputField, Logo, Paragraph, PhoneSection, Title, Subtitle,
 } from '../../components/common';
 import { usernameSelector } from '../../state/reducers/userReducer';
+import { RoutherPaths } from '../../constants/routerPaths';
 
 function LogIn() {
+  const navigate = useNavigate();
   const username = useSelector(usernameSelector);
+
   return (
     <section className="flex h-full">
       <div className="text-center bg-white half-section">
@@ -29,7 +32,6 @@ function LogIn() {
             />
           </>
         )}
-
         <form className="w-full mt-8 mb-4 md:w-[250px]  space-y-7">
           <InputField label="Email" id="email" type="email" />
           <InputField label="Password" id="password" type="password" />
@@ -40,9 +42,7 @@ function LogIn() {
         </form>
         <Button type="button" text="Connect with Facebook" variant="secondary" />
         <hr />
-        <Link to="/sign-up">
-          <Button type="button" text="Sign Up" variant="secondary" />
-        </Link>
+        <Button onClick={() => navigate(RoutherPaths.SIGN_UP)} type="button" text="Sign Up" variant="secondary" />
       </div>
       <PhoneSection />
     </section>
