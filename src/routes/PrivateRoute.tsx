@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom';
+import { RoutherPaths } from '../constants/routerPaths';
 import useAuthentication from '../hooks/useAuthentication';
 
 export const PrivateRoute = ({ children }) => {
@@ -7,5 +8,5 @@ export const PrivateRoute = ({ children }) => {
     return children;
   }
 
-  return <Navigate to="/login" />;
+  return <Navigate to={RoutherPaths.LOG_IN} />;
 };

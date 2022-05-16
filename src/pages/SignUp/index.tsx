@@ -11,6 +11,7 @@ import { SignUpInputsType } from '../../types/userInputsTypes';
 import { signUp } from '../../state/actions/userActions';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
 import { RequestStatus } from '../../constants/requestStatus';
+import { RoutherPaths } from '../../constants/routerPaths';
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function SignUp() {
   const onSubmit: SubmitHandler<SignUpInputsType> = async (data: SignUpInputsType) => {
     try {
       await dispatch(signUp(data)).unwrap();
-      navigate('/login');
+      navigate(RoutherPaths.LOG_IN);
     } catch (e) {
       console.log(e);
     }
@@ -84,7 +85,7 @@ function SignUp() {
           <Button type="submit" text={`${isRequestLoading ? 'Loading...' : 'Sign Up'}`} variant="primary" />
         </form>
         <hr />
-        <Link to="/login">
+        <Link to={RoutherPaths.LOG_IN}>
           <Button type="button" text="Sign In" variant="secondary" />
         </Link>
       </div>
