@@ -1,29 +1,31 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  signUpFulfilled, signUpPending, signUpRejected, logInFulfilled, logInRejected, resetErrors, logInPending,
+  signUpFulfilled, signUpPending, signUpRejected, logInFulfilled,
+  logInRejected, resetErrors, logInPending,
 } from '../actions/userActions';
 import { RequestStatus } from '../../constants/requestStatus';
+import { InitialStateType } from '../../types/initialStateTypes';
 
-const initialState = {
+const initialState: InitialStateType = {
   status: null,
   userData: {},
   requestErrors: {},
   isAuthenticated: false,
 };
 
-const fulfilledReducer = (state, { payload }) => {
+const fulfilledReducer = (state: InitialStateType, { payload }) => {
   state.userData = payload;
   state.status = RequestStatus.FULFILLED;
   state.requestErrors = {};
   state.isAuthenticated = true;
 };
 
-const pendingReducer = (state, { payload }) => {
+const pendingReducer = (state: InitialStateType, { payload }) => {
   state.status = RequestStatus.PENDING;
 };
 
-const rejectedReducer = (state, { payload }) => {
+const rejectedReducer = (state: InitialStateType, { payload }) => {
   state.status = RequestStatus.REJECTED;
   state.requestErrors = payload.errors;
 };
