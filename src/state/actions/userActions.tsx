@@ -27,7 +27,7 @@ export const logIn = createAsyncThunk(
   },
 );
 
-export const resetErrors = createAction('user/resetErrors');
+export const resetErrors = createAction(ThunkActions.USER_RESET_ERRORS);
 
 export const {
   fulfilled: signUpFulfilled,
