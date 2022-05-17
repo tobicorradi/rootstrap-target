@@ -17,7 +17,7 @@
   @apply font-semibold bg-transparent text-target-black normal-case;
 }
 .input{
-  @apply p-3 text-sm text-center placeholder:uppercase placeholder:text-separated placeholder:text-xs border placeholder:text-gray-400 border-target-black;
+  @apply p-3 text-sm text-center placeholder:uppercase placeholder:text-separated placeholder:text-xs border-2 placeholder:text-gray-400 border-target-black;
 }
 .error-input{
   @apply border-2 border-target-red
