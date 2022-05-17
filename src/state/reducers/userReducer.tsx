@@ -21,7 +21,7 @@ const fulfilledReducer = (state: InitialStateType, { payload }) => {
   state.isAuthenticated = true;
 };
 
-const pendingReducer = (state: InitialStateType, { payload }) => {
+const pendingReducer = (state: InitialStateType) => {
   state.status = RequestStatus.PENDING;
 };
 
