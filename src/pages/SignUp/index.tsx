@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,15 +9,17 @@ import {
 } from '../../components/common';
 import { genderOptions } from '../../constants/genderOptions';
 import { SignUpInputsType } from '../../types/userInputsTypes';
-import { signUp } from '../../state/actions/userActions';
+import { signUp, resetErrors } from '../../state/actions/userActions';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
 import { RequestStatus } from '../../constants/requestStatus';
 import { RoutherPaths } from '../../constants/routerPaths';
 import { getFormErrors } from '../../utils/getFormErrors';
+import useAuthentication from '../../hooks/useAuthentication';
 
 function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isAuthenticated = useAuthentication();
   const status = useSelector(statusSelector);
   const requestErrors = useSelector(requestErrorsSelector);
 
@@ -30,13 +32,16 @@ function SignUp() {
   } = useForm({ resolver: yupResolver(signUpSchema) });
 
   const onSubmit: SubmitHandler<SignUpInputsType> = async (data: SignUpInputsType) => {
-    try {
-      await dispatch(signUp(data)).unwrap();
-      navigate(RoutherPaths.LOG_IN);
-    } catch (e) {
-      console.log(e);
-    }
+    await dispatch(signUp(data)).unwrap();
+    navigate(RoutherPaths.LOG_IN);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) navigate(RoutherPaths.HOME);
+    return () => {
+      dispatch(resetErrors());
+    };
+  }, []);
 
   return (
     <section className="flex h-full">

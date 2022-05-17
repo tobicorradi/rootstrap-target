@@ -1,13 +1,28 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { signUpFulfilled, signUpPending, signUpRejected } from '../actions/userActions';
+import {
+  signUpFulfilled, signUpPending, signUpRejected, logInFulfilled,
+  logInRejected, resetErrors, logInPending,
+} from '../actions/userActions';
 import { RequestStatus } from '../../constants/requestStatus';
+import { InitialStateType } from '../../types/initialStateTypes';
 
-const initialState = {
+const initialState: InitialStateType = {
   status: null,
-  userData: {},
+  data: {},
   requestErrors: {},
   isAuthenticated: false,
+  token: '',
+  client: '',
+};
+
+const pendingReducer = (state: InitialStateType) => {
+  state.status = RequestStatus.PENDING;
+};
+
+const rejectedReducer = (state: InitialStateType, { payload }) => {
+  state.status = RequestStatus.REJECTED;
+  state.requestErrors = payload.errors;
 };
 
 export const userSlice = createSlice({
@@ -15,22 +30,30 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [signUpFulfilled.toString()]: (state, { payload }) => {
-      state.userData = payload;
+    [signUpFulfilled.toString()]: (state: InitialStateType, { payload }) => {
+      state.data = payload;
       state.status = RequestStatus.FULFILLED;
       state.requestErrors = {};
     },
-    [signUpPending.toString()]: (state) => {
-      state.status = RequestStatus.PENDING;
+    [logInFulfilled.toString()]: (state: InitialStateType, { payload }) => {
+      state.data = payload.data;
+      state.status = RequestStatus.FULFILLED;
+      state.token = payload['access-token'];
+      state.client = payload.client;
+      state.isAuthenticated = true;
+      state.requestErrors = {};
     },
-    [signUpRejected.toString()]: (state, { payload }) => {
-      state.status = RequestStatus.REJECTED;
-      state.requestErrors = payload.errors;
+    [signUpPending.toString()]: pendingReducer,
+    [logInPending.toString()]: pendingReducer,
+    [signUpRejected.toString()]: rejectedReducer,
+    [logInRejected.toString()]: rejectedReducer,
+    [resetErrors.toString()]: (state) => {
+      state.requestErrors = {};
     },
   },
 });
 
-export const usernameSelector = (state) => state.user.userData.username;
+export const usernameSelector = (state) => state.user.data.username;
 
 export const statusSelector = (state) => state.user.status;
 
