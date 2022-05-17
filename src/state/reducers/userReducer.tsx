@@ -12,6 +12,8 @@ const initialState: InitialStateType = {
   data: {},
   requestErrors: {},
   isAuthenticated: false,
+  token: '',
+  client: '',
 };
 
 const pendingReducer = (state: InitialStateType) => {
@@ -34,10 +36,12 @@ export const userSlice = createSlice({
       state.requestErrors = {};
     },
     [logInFulfilled.toString()]: (state: InitialStateType, { payload }) => {
-      state.data = payload;
+      state.data = payload.data;
       state.status = RequestStatus.FULFILLED;
-      state.requestErrors = {};
+      state.token = payload['access-token'];
+      state.client = payload.client;
       state.isAuthenticated = true;
+      state.requestErrors = {};
     },
     [signUpPending.toString()]: pendingReducer,
     [logInPending.toString()]: pendingReducer,

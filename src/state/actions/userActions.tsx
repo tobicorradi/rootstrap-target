@@ -17,9 +17,8 @@ export const logIn = createAsyncThunk(
   ThunkActions.USER_LOG_IN,
   async (user, thunkAPI) => {
     try {
-      const { data } = await userService.logIn({ user });
-      console.log('el usuario fue logueado', data);
-      return data;
+      const { data, headers } = await userService.logIn({ user });
+      return { ...data, ...headers };
     } catch ({ response: { data } }) {
       console.log('el usuario no fue logueado', data);
       return thunkAPI.rejectWithValue(data);

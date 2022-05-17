@@ -3,4 +3,6 @@ export interface InitialStateType {
     data: object;
     requestErrors: object;
     isAuthenticated: boolean;
+    token: string;
+    client: string;
 }
