@@ -1,6 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { signUpFulfilled, signUpPending, signUpRejected } from '../actions/userActions';
+import {
+  signUpFulfilled, signUpPending, signUpRejected, logInFulfilled, logInRejected, resetErrors, logInPending,
+} from '../actions/userActions';
 import { RequestStatus } from '../../constants/requestStatus';
 
 const initialState = {
@@ -10,22 +12,35 @@ const initialState = {
   isAuthenticated: false,
 };
 
+const fulfilledReducer = (state, { payload }) => {
+  state.userData = payload;
+  state.status = RequestStatus.FULFILLED;
+  state.requestErrors = {};
+  state.isAuthenticated = true;
+};
+
+const pendingReducer = (state, { payload }) => {
+  state.status = RequestStatus.PENDING;
+};
+
+const rejectedReducer = (state, { payload }) => {
+  state.status = RequestStatus.REJECTED;
+  state.requestErrors = payload.errors;
+};
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
   extraReducers: {
-    [signUpFulfilled.toString()]: (state, { payload }) => {
-      state.userData = payload;
-      state.status = RequestStatus.FULFILLED;
+    [signUpFulfilled.toString()]: fulfilledReducer,
+    [logInFulfilled.toString()]: fulfilledReducer,
+    [signUpPending.toString()]: pendingReducer,
+    [logInPending.toString()]: pendingReducer,
+    [signUpRejected.toString()]: rejectedReducer,
+    [logInRejected.toString()]: rejectedReducer,
+    [resetErrors.toString()]: (state) => {
       state.requestErrors = {};
-    },
-    [signUpPending.toString()]: (state) => {
-      state.status = RequestStatus.PENDING;
-    },
-    [signUpRejected.toString()]: (state, { payload }) => {
-      state.status = RequestStatus.REJECTED;
-      state.requestErrors = payload.errors;
     },
   },
 });

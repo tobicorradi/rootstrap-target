@@ -8,5 +8,9 @@ export const getFormErrors = (requestErrors, errors, input) => {
     const error = errors[input].message;
     return error;
   }
+
+  if (typeof errors !== 'undefined' && typeof errors[input] === 'undefined') {
+    return requestErrors[0];
+  }
   return '';
 };
