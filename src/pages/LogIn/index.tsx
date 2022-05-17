@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { logInSchema } from '../../schemas';
 import {
   Button, InputField, Logo, Paragraph, PhoneSection, Title, Subtitle,
@@ -13,10 +13,12 @@ import { getFormErrors } from '../../utils/getFormErrors';
 import { LogInInputsType } from '../../types/userInputsTypes';
 import { logIn } from '../../state/actions/userActions';
 import { RequestStatus } from '../../constants/requestStatus';
+import useAuthentication from '../../hooks/useAuthentication';
 
 function LogIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isAuthenticated = useAuthentication();
   const status = useSelector(statusSelector);
   const username = useSelector(usernameSelector);
   const requestErrors = useSelector(requestErrorsSelector);
@@ -37,6 +39,10 @@ function LogIn() {
       console.log(e);
     }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) navigate(RoutherPaths.HOME);
+  }, []);
 
   return (
     <section className="flex h-full">

@@ -14,10 +14,12 @@ import { requestErrorsSelector, statusSelector } from '../../state/reducers/user
 import { RequestStatus } from '../../constants/requestStatus';
 import { RoutherPaths } from '../../constants/routerPaths';
 import { getFormErrors } from '../../utils/getFormErrors';
+import useAuthentication from '../../hooks/useAuthentication';
 
 function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isAuthenticated = useAuthentication();
   const status = useSelector(statusSelector);
   const requestErrors = useSelector(requestErrorsSelector);
 
@@ -38,8 +40,11 @@ function SignUp() {
     }
   };
 
-  useEffect(() => () => {
-    dispatch(resetErrors());
+  useEffect(() => {
+    if (isAuthenticated) navigate(RoutherPaths.HOME);
+    return () => {
+      dispatch(resetErrors());
+    };
   }, []);
 
   return (
