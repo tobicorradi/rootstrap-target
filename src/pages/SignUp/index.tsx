@@ -32,12 +32,8 @@ function SignUp() {
   } = useForm({ resolver: yupResolver(signUpSchema) });
 
   const onSubmit: SubmitHandler<SignUpInputsType> = async (data: SignUpInputsType) => {
-    try {
-      await dispatch(signUp(data)).unwrap();
-      navigate(RoutherPaths.LOG_IN);
-    } catch (e) {
-      console.log(e);
-    }
+    await dispatch(signUp(data)).unwrap();
+    navigate(RoutherPaths.LOG_IN);
   };
 
   useEffect(() => {

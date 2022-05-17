@@ -32,12 +32,8 @@ function LogIn() {
   const isRequestLoading = useMemo(() => status === RequestStatus.PENDING, [status]);
 
   const onSubmit: SubmitHandler<LogInInputsType> = async (data: LogInInputsType) => {
-    try {
-      await dispatch(logIn(data)).unwrap();
-      navigate(RoutherPaths.HOME);
-    } catch (e) {
-      console.log(e);
-    }
+    await dispatch(logIn(data)).unwrap();
+    navigate(RoutherPaths.HOME);
   };
 
   useEffect(() => {

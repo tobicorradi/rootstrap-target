@@ -20,7 +20,6 @@ export const logIn = createAsyncThunk(
       const { data, headers } = await userService.logIn({ user });
       return { ...data, ...headers };
     } catch ({ response: { data } }) {
-      console.log('el usuario no fue logueado', data);
       return thunkAPI.rejectWithValue(data);
     }
   },
