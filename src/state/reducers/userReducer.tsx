@@ -9,13 +9,13 @@ import { InitialStateType } from '../../types/initialStateTypes';
 
 const initialState: InitialStateType = {
   status: null,
-  userData: {},
+  data: {},
   requestErrors: {},
   isAuthenticated: false,
 };
 
 const fulfilledReducer = (state: InitialStateType, { payload }) => {
-  state.userData = payload;
+  state.data = payload;
   state.status = RequestStatus.FULFILLED;
   state.requestErrors = {};
   state.isAuthenticated = true;
@@ -47,7 +47,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const usernameSelector = (state) => state.user.userData.username;
+export const usernameSelector = (state) => state.user.data.username;
 
 export const statusSelector = (state) => state.user.status;
 

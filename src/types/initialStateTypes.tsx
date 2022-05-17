@@ -1,6 +1,6 @@
 export interface InitialStateType {
     status: null | 'Rejected' | 'Fulfilled' | 'Pending';
-    userData: object;
+    data: object;
     requestErrors: object;
     isAuthenticated: boolean;
 }
