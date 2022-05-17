@@ -14,13 +14,6 @@ const initialState: InitialStateType = {
   isAuthenticated: false,
 };
 
-const fulfilledReducer = (state: InitialStateType, { payload }) => {
-  state.data = payload;
-  state.status = RequestStatus.FULFILLED;
-  state.requestErrors = {};
-  state.isAuthenticated = true;
-};
-
 const pendingReducer = (state: InitialStateType) => {
   state.status = RequestStatus.PENDING;
 };
@@ -35,8 +28,17 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [signUpFulfilled.toString()]: fulfilledReducer,
-    [logInFulfilled.toString()]: fulfilledReducer,
+    [signUpFulfilled.toString()]: (state: InitialStateType, { payload }) => {
+      state.data = payload;
+      state.status = RequestStatus.FULFILLED;
+      state.requestErrors = {};
+    },
+    [logInFulfilled.toString()]: (state: InitialStateType, { payload }) => {
+      state.data = payload;
+      state.status = RequestStatus.FULFILLED;
+      state.requestErrors = {};
+      state.isAuthenticated = true;
+    },
     [signUpPending.toString()]: pendingReducer,
     [logInPending.toString()]: pendingReducer,
     [signUpRejected.toString()]: rejectedReducer,
