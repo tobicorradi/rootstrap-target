@@ -12,11 +12,7 @@ function Map() {
       />
       <Marker position={[51.505, -0.09]}>
         <Popup>
-          A pretty CSS3 popup.
-          {' '}
-          <br />
-          {' '}
-          Easily customizable.
+          I am a Popup
         </Popup>
       </Marker>
     </MapContainer>
