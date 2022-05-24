@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   signUpFulfilled, signUpPending, signUpRejected, logInFulfilled,
-  logInRejected, resetErrors, logInPending,
+  logInRejected, resetErrors, logInPending, logOut,
 } from '../actions/userActions';
 import { RequestStatus } from '../../constants/requestStatus';
 import { InitialStateType } from '../../types/initialStateTypes';
@@ -47,6 +47,7 @@ export const userSlice = createSlice({
     [logInPending.toString()]: pendingReducer,
     [signUpRejected.toString()]: rejectedReducer,
     [logInRejected.toString()]: rejectedReducer,
+    [logOut.toString()]: () => initialState,
     [resetErrors.toString()]: (state) => {
       state.requestErrors = {};
     },

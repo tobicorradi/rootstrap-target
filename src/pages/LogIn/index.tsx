@@ -7,7 +7,7 @@ import { logInSchema } from '../../schemas';
 import {
   Button, InputField, Logo, Paragraph, PhoneSection, Title, Subtitle,
 } from '../../components/common';
-import { usernameSelector, requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
+import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
 import { RoutherPaths } from '../../constants/routerPaths';
 import { getFormErrors } from '../../utils/getFormErrors';
 import { LogInInputsType } from '../../types/userInputsTypes';
@@ -18,9 +18,8 @@ import useAuthentication from '../../hooks/useAuthentication';
 function LogIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuthenticated = useAuthentication();
+  const { isAuthenticated, username } = useAuthentication();
   const status = useSelector(statusSelector);
-  const username = useSelector(usernameSelector);
   const requestErrors = useSelector(requestErrorsSelector);
 
   const {

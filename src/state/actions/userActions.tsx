@@ -25,6 +25,8 @@ export const logIn = createAsyncThunk(
   },
 );
 
+export const logOut = createAction(ThunkActions.USER_LOG_OUT);
+
 export const resetErrors = createAction(ThunkActions.USER_RESET_ERRORS);
 
 export const {

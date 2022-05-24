@@ -19,7 +19,7 @@ import useAuthentication from '../../hooks/useAuthentication';
 function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuthenticated = useAuthentication();
+  const { isAuthenticated } = useAuthentication();
   const status = useSelector(statusSelector);
   const requestErrors = useSelector(requestErrorsSelector);
 

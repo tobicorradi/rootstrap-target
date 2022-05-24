@@ -3,7 +3,7 @@ import React from 'react';
 interface Props {
   text: string;
   type: string;
-  variant: string;
+  variant: 'primary' | 'secondary' | 'subtle';
   onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 function Button({
