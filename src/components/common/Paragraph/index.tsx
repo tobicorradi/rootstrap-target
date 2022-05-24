@@ -1,6 +1,6 @@
 interface Props {
     text: string,
-    size: string,
+    size?: string,
     maxWidth?: string,
     lineHeight?: number,
 }
