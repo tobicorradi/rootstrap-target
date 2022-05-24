@@ -11,12 +11,22 @@ function Home() {
   return (
     <section className="flex h-full">
       {/* TODO: remove this empty div and create the component containing it's own logic */}
-      <div className="flex justify-center w-2/6 h-screen max-w-sm p-5 text-center bg-white">
+      <div className="flex flex-col items-center w-2/6 h-screen max-w-sm p-5 space-y-10 text-center bg-white">
         <div>
           <img className="mb-4" src={userIcon} alt="User profile" />
           <Paragraph text={username} />
-          <Button onClick={() => dispatch(logOut())} variant="subtle" type="button" text="Logout" />
+          <Button
+            text="Logout"
+            type="button"
+            variant="subtle"
+            onClick={() => dispatch(logOut())}
+          />
         </div>
+        <Paragraph
+          size="lg"
+          fontWeight="semibold"
+          text="Create your first target by clicking wherever on the map."
+        />
       </div>
       <Map />
     </section>
