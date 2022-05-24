@@ -1,11 +1,19 @@
 import { Navigate } from 'react-router-dom';
 import { RoutherPaths } from '../constants/routerPaths';
 import useAuthentication from '../hooks/useAuthentication';
+import Map from '../components/common/Map';
 
 export const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuthentication();
   if (isAuthenticated) {
-    return children;
+    return (
+      <section className="flex h-full">
+        <div className='flex flex-col items-center w-2/6 h-screen max-w-sm p-5 space-y-10 text-center bg-white"'>
+          {children}
+        </div>
+        <Map />
+      </section>
+    );
   }
 
   return <Navigate to={RoutherPaths.LOG_IN} />;
