@@ -3,7 +3,7 @@ import { RoutherPaths } from '../constants/routerPaths';
 import useAuthentication from '../hooks/useAuthentication';
 
 export const PrivateRoute = ({ children }) => {
-  const isAuthenticated = useAuthentication();
+  const { isAuthenticated } = useAuthentication();
   if (isAuthenticated) {
     return children;
   }
