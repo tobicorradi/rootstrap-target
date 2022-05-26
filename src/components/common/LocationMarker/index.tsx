@@ -13,9 +13,7 @@ function LocationMarker() {
     });
   }, []);
 
-  if (!position) return null;
-
-  return <Marker position={position} icon={customLocationIcon} />;
+  return position && <Marker position={position} icon={customLocationIcon} />;
 }
 
 export default LocationMarker;
