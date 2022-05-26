@@ -6,3 +6,4 @@ export { default as playIcon } from './playIcon.svg';
 export { default as playStoreIcon } from './playStoreIcon.svg';
 export { default as twitterIcon } from './twitterIcon.svg';
 export { default as userIcon } from './userIcon.svg';
+export { default as locationIcon } from './locationIcon.svg';
