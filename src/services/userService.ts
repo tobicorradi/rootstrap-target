@@ -1,5 +1,5 @@
 import api from '../api';
-import { UserEndPoints } from '../constants/userEndpoints';
+import { UserEndPoints } from '../constants';
 
 class userService {
   static signIn(data) {
