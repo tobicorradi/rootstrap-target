@@ -8,10 +8,8 @@ function LocationMarker() {
 
   useEffect(() => {
     map.locate().on('locationfound', (e) => {
-      const { lat } = e.latlng;
-      const { lng } = e.latlng;
-      setPosition({ lat, lng });
-      map.flyTo({ lat, lng }, map.getZoom(), { animate: false });
+      setPosition(e.latlng);
+      map.flyTo(e.latlng, map.getZoom(), { animate: false });
     });
   }, []);
 
