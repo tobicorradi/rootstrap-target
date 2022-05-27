@@ -1,4 +1,10 @@
-export const getFormErrors = (requestErrors, errors, input) => {
+import { FieldErrors } from 'react-hook-form';
+
+export const getFormErrors = (
+  requestErrors: {[key: string]: string[]},
+  errors: FieldErrors,
+  input: string,
+) => {
   if (typeof requestErrors !== 'undefined' && typeof requestErrors[input] !== 'undefined') {
     const inputName = input.charAt(0).toUpperCase() + input.slice(1);
     const apiErrorMessage = `${inputName} ${requestErrors[input][0]}`;
