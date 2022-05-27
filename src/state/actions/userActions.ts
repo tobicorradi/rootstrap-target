@@ -1,6 +1,6 @@
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import userService from '../../services/userService';
-import { ThunkActions } from '../../constants/thunkActions';
+import { ThunkActions } from '../../constants';
 
 export const signUp = createAsyncThunk(
   ThunkActions.USER_SIGN_UP,

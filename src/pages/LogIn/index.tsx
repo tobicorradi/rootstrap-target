@@ -8,11 +8,10 @@ import {
   Button, InputField, Logo, Paragraph, PhoneSection, Title, Subtitle,
 } from '../../components/common';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
-import { RoutherPaths } from '../../constants/routerPaths';
+import { RouterPaths, RequestStatus } from '../../constants';
 import { getFormErrors } from '../../utils/getFormErrors';
 import { LogInInputsType } from '../../types/userInputsTypes';
 import { logIn } from '../../state/actions/userActions';
-import { RequestStatus } from '../../constants/requestStatus';
 import useAuthentication from '../../hooks/useAuthentication';
 
 function LogIn() {
@@ -32,11 +31,11 @@ function LogIn() {
 
   const onSubmit: SubmitHandler<LogInInputsType> = async (data: LogInInputsType) => {
     await dispatch(logIn(data)).unwrap();
-    navigate(RoutherPaths.HOME);
+    navigate(RouterPaths.HOME);
   };
 
   useEffect(() => {
-    if (isAuthenticated) navigate(RoutherPaths.HOME);
+    if (isAuthenticated) navigate(RouterPaths.HOME);
   }, []);
 
   return (
@@ -83,7 +82,7 @@ function LogIn() {
         </form>
         <Button type="button" text="Connect with Facebook" variant="secondary" />
         <hr />
-        <Button onClick={() => navigate(RoutherPaths.SIGN_UP)} type="button" text="Sign Up" variant="secondary" />
+        <Button onClick={() => navigate(RouterPaths.SIGN_UP)} type="button" text="Sign Up" variant="secondary" />
       </div>
       <PhoneSection />
     </section>

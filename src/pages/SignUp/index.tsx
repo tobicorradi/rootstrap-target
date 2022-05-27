@@ -7,12 +7,10 @@ import { signUpSchema } from '../../schemas';
 import {
   Button, InputField, SelectInput, PhoneSection, Title,
 } from '../../components/common';
-import { genderOptions } from '../../constants/genderOptions';
+import { genderOptions, RequestStatus, RouterPaths } from '../../constants';
 import { SignUpInputsType } from '../../types/userInputsTypes';
 import { signUp, resetErrors } from '../../state/actions/userActions';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
-import { RequestStatus } from '../../constants/requestStatus';
-import { RoutherPaths } from '../../constants/routerPaths';
 import { getFormErrors } from '../../utils/getFormErrors';
 import useAuthentication from '../../hooks/useAuthentication';
 
@@ -33,11 +31,11 @@ function SignUp() {
 
   const onSubmit: SubmitHandler<SignUpInputsType> = async (data: SignUpInputsType) => {
     await dispatch(signUp(data)).unwrap();
-    navigate(RoutherPaths.LOG_IN);
+    navigate(RouterPaths.LOG_IN);
   };
 
   useEffect(() => {
-    if (isAuthenticated) navigate(RoutherPaths.HOME);
+    if (isAuthenticated) navigate(RouterPaths.HOME);
     return () => {
       dispatch(resetErrors());
     };
@@ -88,7 +86,7 @@ function SignUp() {
           <Button type="submit" text={`${isRequestLoading ? 'Loading...' : 'Sign Up'}`} variant="primary" />
         </form>
         <hr />
-        <Button onClick={() => navigate(RoutherPaths.LOG_IN)} type="button" text="Sign In" variant="secondary" />
+        <Button onClick={() => navigate(RouterPaths.LOG_IN)} type="button" text="Sign In" variant="secondary" />
       </div>
       <PhoneSection />
     </section>

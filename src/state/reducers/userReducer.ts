@@ -4,7 +4,7 @@ import {
   signUpFulfilled, signUpPending, signUpRejected, logInFulfilled,
   logInRejected, resetErrors, logInPending, logOut,
 } from '../actions/userActions';
-import { RequestStatus } from '../../constants/requestStatus';
+import { RequestStatus } from '../../constants';
 import { InitialStateType } from '../../types/initialStateTypes';
 
 const initialState: InitialStateType = {

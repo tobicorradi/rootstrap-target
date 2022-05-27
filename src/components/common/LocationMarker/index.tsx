@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Marker, useMap } from 'react-leaflet';
-import customLocationIcon from '../../../constants/customLocationIcon';
+import { customLocationIcon } from '../../../constants';
 
 function LocationMarker() {
   const map = useMap();
