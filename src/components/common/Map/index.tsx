@@ -1,20 +1,16 @@
 import {
-  MapContainer, Marker, Popup, TileLayer,
+  MapContainer, TileLayer,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { envVariables } from '../../../constants/envVariables';
+import LocationMarker from '../LocationMarker';
 
 function Map() {
   return (
     <MapContainer center={[51.505, -0.09]} zoom={17} scrollWheelZoom>
       <TileLayer
-        url={envVariables.MAP_TOKEN}
+        url={import.meta.env.VITE_MAP_URL}
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          I am a Popup
-        </Popup>
-      </Marker>
+      <LocationMarker />
     </MapContainer>
   );
 }
