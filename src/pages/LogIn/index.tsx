@@ -8,11 +8,10 @@ import {
   Button, InputField, Logo, Paragraph, PhoneSection, Title, Subtitle,
 } from '../../components/common';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
-import { RouterPaths } from '../../constants';
+import { RouterPaths, RequestStatus } from '../../constants';
 import { getFormErrors } from '../../utils/getFormErrors';
 import { LogInInputsType } from '../../types/userInputsTypes';
 import { logIn } from '../../state/actions/userActions';
-import { RequestStatus } from '../../constants';
 import useAuthentication from '../../hooks/useAuthentication';
 
 function LogIn() {
