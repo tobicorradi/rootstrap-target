@@ -7,12 +7,10 @@ import { signUpSchema } from '../../schemas';
 import {
   Button, InputField, SelectInput, PhoneSection, Title,
 } from '../../components/common';
-import { genderOptions } from '../../constants';
+import { genderOptions, RequestStatus, RouterPaths } from '../../constants';
 import { SignUpInputsType } from '../../types/userInputsTypes';
 import { signUp, resetErrors } from '../../state/actions/userActions';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
-import { RequestStatus } from '../../constants';
-import { RouterPaths } from '../../constants';
 import { getFormErrors } from '../../utils/getFormErrors';
 import useAuthentication from '../../hooks/useAuthentication';
 
