@@ -44,7 +44,7 @@ function LogIn() {
     <section className="flex h-full">
       <div className="text-center bg-white half-section">
         <Logo />
-        {username ? (
+        {username && !isAuthenticated ? (
           <>
             <Title text={`¡Hi, ${username}!`} />
             <Subtitle text="Welcome to Target" />
