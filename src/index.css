@@ -5,10 +5,10 @@
 @tailwind utilities;
 
 .btn{
-  @apply p-3 text-sm uppercase ease-out duration-200;
+  @apply p-3 px-7 text-sm uppercase ease-out duration-200;
 }
 .btn-primary {
-  @apply text-white w-full font-semibold bg-target-black hover:bg-gray-800 text-separated ;
+  @apply text-white font-semibold bg-target-black hover:bg-gray-800 text-separated ;
 }
 .btn-secondary {
   @apply font-bold bg-transparent text-target-black text-separated ;
@@ -38,6 +38,9 @@
   .text-separated{
     @apply tracking-[.20rem]
   }
+  .blue-dot{
+    @apply pl-3 before:content-['\2022'] before:w-4 before:font-bold before:text-target-blue before:text-3xl before:inline-block before:-ml-4 before:relative before:top-1
+  }
 }
 
 .App{
@@ -48,3 +51,4 @@
   width: 100vw;
   height: 100vh;
 }
+

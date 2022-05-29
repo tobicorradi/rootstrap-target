@@ -32,7 +32,7 @@ function LogIn() {
 
   const onSubmit: SubmitHandler<LogInInputsType> = async (data) => {
     await dispatch(logIn(data)).unwrap();
-    navigate(RouterPaths.HOME);
+    navigate(RouterPaths.WELCOME);
   };
 
   useEffect(() => {
