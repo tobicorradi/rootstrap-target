@@ -14,14 +14,15 @@ import { LogInInputsType } from '../../types/userInputsTypes';
 import { logIn } from '../../state/actions/userActions';
 import useAuthentication from '../../hooks/useAuthentication';
 import { AppDispatch } from '../../state/store';
+import useVisitor from '../../hooks/useVisitor';
 
 function LogIn() {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const hasVisitedBefore = useVisitor();
   const { isAuthenticated, username } = useAuthentication();
   const status = useSelector(statusSelector);
   const requestErrors = useSelector(requestErrorsSelector);
-
   const {
     register,
     handleSubmit,
@@ -32,7 +33,7 @@ function LogIn() {
 
   const onSubmit: SubmitHandler<LogInInputsType> = async (data) => {
     await dispatch(logIn(data)).unwrap();
-    navigate(RouterPaths.WELCOME);
+    navigate(hasVisitedBefore ? RouterPaths.HOME : RouterPaths.WELCOME);
   };
 
   useEffect(() => {

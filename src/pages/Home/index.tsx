@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { userIcon } from '../../assets';
 import { Button, Paragraph } from '../../components/common';
 import { logOut } from '../../state/actions/userActions';
@@ -7,6 +8,11 @@ import useAuthentication from '../../hooks/useAuthentication';
 function Home() {
   const dispatch = useDispatch();
   const { username } = useAuthentication();
+
+  useEffect(() => {
+    localStorage.setItem('hasVisitedBefore', 'true');
+  }, []);
+
   return (
     <>
       <div>

@@ -1,8 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import {
   Button, Logo, Subtitle, Title,
 } from '../../components/common';
+import { RouterPaths } from '../../constants';
 
 function Welcome() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div>
@@ -13,12 +17,12 @@ function Welcome() {
       <div className="mb-1 text-left">
         <ul>
           <li className="mb-5 blue-dot">
-            Target will  start a chat whenever you've a match.
-            You can always dismiss a conversation if you're not interested.
+            Create a  target  by clicking wherever on the map, specify
+            the ratio and and a topic: Travel, Dating, Music, etc.
           </li>
           <li className="blue-dot">
-            Target will  start a chat whenever you've a match.
-            You can always dismiss a conversation if you're not interested.
+            Target will  start a chat whenever you&apos;ve a match.
+            You can always dismiss a conversation if you&apos;re not interested.
           </li>
         </ul>
       </div>
@@ -27,6 +31,7 @@ function Welcome() {
         variant="primary"
         text="Ok! Got it!"
         maxWidth="max-w-xs"
+        onClick={() => navigate(RouterPaths.HOME)}
       />
     </>
   );
