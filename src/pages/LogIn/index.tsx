@@ -13,9 +13,10 @@ import { getFormErrors } from '../../utils/getFormErrors';
 import { LogInInputsType } from '../../types/userInputsTypes';
 import { logIn } from '../../state/actions/userActions';
 import useAuthentication from '../../hooks/useAuthentication';
+import { AppDispatch } from '../../state/store';
 
 function LogIn() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { isAuthenticated, username } = useAuthentication();
   const status = useSelector(statusSelector);
@@ -25,11 +26,11 @@ function LogIn() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(logInSchema) });
+  } = useForm<LogInInputsType>({ resolver: yupResolver(logInSchema) });
 
   const isRequestLoading = useMemo(() => status === RequestStatus.PENDING, [status]);
 
-  const onSubmit: SubmitHandler<LogInInputsType> = async (data: LogInInputsType) => {
+  const onSubmit: SubmitHandler<LogInInputsType> = async (data) => {
     await dispatch(logIn(data)).unwrap();
     navigate(RouterPaths.HOME);
   };

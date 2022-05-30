@@ -1,12 +1,13 @@
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import userService from '../../services/userService';
 import { ThunkActions } from '../../constants';
+import { LogInInputsType, SignUpInputsType } from '../../types/userInputsTypes';
 
 export const signUp = createAsyncThunk(
   ThunkActions.USER_SIGN_UP,
-  async (user, thunkAPI) => {
+  async (user: SignUpInputsType, thunkAPI) => {
     try {
-      const { data } = await userService.signIn({ user });
+      const { data } = await userService.signUp({ user });
       return data;
     } catch ({ response: { data } }) {
       return thunkAPI.rejectWithValue(data);
@@ -15,7 +16,7 @@ export const signUp = createAsyncThunk(
 );
 export const logIn = createAsyncThunk(
   ThunkActions.USER_LOG_IN,
-  async (user, thunkAPI) => {
+  async (user: LogInInputsType, thunkAPI) => {
     try {
       const { data, headers } = await userService.logIn({ user });
       return { ...data, ...headers };

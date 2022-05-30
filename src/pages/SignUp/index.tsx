@@ -13,9 +13,10 @@ import { signUp, resetErrors } from '../../state/actions/userActions';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
 import { getFormErrors } from '../../utils/getFormErrors';
 import useAuthentication from '../../hooks/useAuthentication';
+import { AppDispatch } from '../../state/store';
 
 function SignUp() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthentication();
   const status = useSelector(statusSelector);
@@ -27,9 +28,9 @@ function SignUp() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(signUpSchema) });
+  } = useForm<SignUpInputsType>({ resolver: yupResolver(signUpSchema) });
 
-  const onSubmit: SubmitHandler<SignUpInputsType> = async (data: SignUpInputsType) => {
+  const onSubmit: SubmitHandler<SignUpInputsType> = async (data) => {
     await dispatch(signUp(data)).unwrap();
     navigate(RouterPaths.LOG_IN);
   };

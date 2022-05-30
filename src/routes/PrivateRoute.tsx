@@ -3,7 +3,11 @@ import { RouterPaths } from '../constants';
 import useAuthentication from '../hooks/useAuthentication';
 import Map from '../components/common/Map';
 
-export const PrivateRoute = ({ children }) => {
+interface Props {
+  children: JSX.Element,
+}
+
+export const PrivateRoute = ({ children }: Props) => {
   const { isAuthenticated } = useAuthentication();
   if (isAuthenticated) {
     return (

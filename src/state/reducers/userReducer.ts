@@ -6,6 +6,7 @@ import {
 } from '../actions/userActions';
 import { RequestStatus } from '../../constants';
 import { InitialStateType } from '../../types/initialStateTypes';
+import type { RootState } from '../store';
 
 const initialState: InitialStateType = {
   status: null,
@@ -20,7 +21,7 @@ const pendingReducer = (state: InitialStateType) => {
   state.status = RequestStatus.PENDING;
 };
 
-const rejectedReducer = (state: InitialStateType, { payload }) => {
+const rejectedReducer = (state: InitialStateType, { payload }: {payload: {[key: string]: any}}) => {
   state.status = RequestStatus.REJECTED;
   state.requestErrors = payload.errors;
 };
@@ -54,12 +55,12 @@ export const userSlice = createSlice({
   },
 });
 
-export const usernameSelector = (state) => state.user.data.username;
+export const usernameSelector = (state: RootState) => state.user.data.username;
 
-export const statusSelector = (state) => state.user.status;
+export const statusSelector = (state: RootState) => state.user.status;
 
-export const authSelector = (state) => state.user.isAuthenticated;
+export const authSelector = (state: RootState) => state.user.isAuthenticated;
 
-export const requestErrorsSelector = (state) => state.user.requestErrors;
+export const requestErrorsSelector = (state: RootState) => state.user.requestErrors;
 
 export default userSlice.reducer;

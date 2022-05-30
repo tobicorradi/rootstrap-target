@@ -6,7 +6,7 @@
     "settings": {
         "import/resolver": {
             "node": {
-                "extensions": [".ts", ".tsx"],
+                "extensions": [".js", ".ts", ".tsx"],
                 "moduleDirectory": ["src", "node_modules"]
             }
         }
