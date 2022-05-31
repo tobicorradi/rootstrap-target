@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-xl text-separated;
+  }
+  h2 {
+    @apply text-lg;
+  }
+  p{
+    @apply leading-7 font-normal;
+  }
+}
+
 .btn{
   @apply p-3 px-7 text-sm uppercase ease-out duration-200;
 }
@@ -28,6 +40,7 @@
 .error-message{
   @apply text-target-red text-sm mt-1
 }
+
 @layer utilities{
   .center-position{
     @apply absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2;
@@ -51,4 +64,5 @@
   width: 100vw;
   height: 100vh;
 }
+
 

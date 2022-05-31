@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import {
-  Button, Logo, Subtitle, Title,
+  Button, Logo,
 } from '../../components/common';
 import { RouterPaths } from '../../constants';
 
@@ -11,8 +11,12 @@ const Welcome = () => {
     <>
       <div>
         <Logo />
-        <Title text="Welcome to Target" />
-        <Subtitle text="Find people near you & connect" />
+        <h1 className="mb-4">
+          Welcome to
+          {' '}
+          <strong className="uppercase">Target</strong>
+        </h1>
+        <h2 className="font-semibold">Find people near you & connect</h2>
       </div>
       <div className="mb-1 text-left">
         <ul>
