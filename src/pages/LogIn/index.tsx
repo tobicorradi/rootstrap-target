@@ -44,7 +44,7 @@ const LogIn = () => {
     <section className="flex h-full">
       <div className="text-center bg-white half-section">
         <Logo />
-        {username && !isAuthenticated ? (
+        {username ? (
           <>
             <h1 className="mb-4 font-bold uppercase">{`¡Hi, ${username}!`}</h1>
             <h2>
