@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useMemo } from 'react';
 import { logInSchema } from '../../schemas';
 import {
-  Button, InputField, Logo, Paragraph, PhoneSection, Title, Subtitle,
+  Button, InputField, Logo, PhoneSection,
 } from '../../components/common';
 import { requestErrorsSelector, statusSelector } from '../../state/reducers/userReducer';
 import { RouterPaths, RequestStatus } from '../../constants';
@@ -14,14 +14,15 @@ import { LogInInputsType } from '../../types/userInputsTypes';
 import { logIn } from '../../state/actions/userActions';
 import useAuthentication from '../../hooks/useAuthentication';
 import { AppDispatch } from '../../state/store';
+import useVisitor from '../../hooks/useVisitor';
 
-function LogIn() {
+const LogIn = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const hasVisitedBefore = useVisitor();
   const { isAuthenticated, username } = useAuthentication();
   const status = useSelector(statusSelector);
   const requestErrors = useSelector(requestErrorsSelector);
-
   const {
     register,
     handleSubmit,
@@ -32,7 +33,7 @@ function LogIn() {
 
   const onSubmit: SubmitHandler<LogInInputsType> = async (data) => {
     await dispatch(logIn(data)).unwrap();
-    navigate(RouterPaths.HOME);
+    navigate(hasVisitedBefore ? RouterPaths.HOME : RouterPaths.WELCOME);
   };
 
   useEffect(() => {
@@ -45,20 +46,22 @@ function LogIn() {
         <Logo />
         {username ? (
           <>
-            <Title text={`¡Hi, ${username}!`} />
-            <Subtitle text="Welcome to Target" />
+            <h1 className="mb-4 font-bold uppercase">{`¡Hi, ${username}!`}</h1>
+            <h2>
+              Welcome to
+              {' '}
+              <strong className="uppercase">Target</strong>
+            </h2>
           </>
         ) : (
           <>
-            <Title text="Target MVD" />
-            <Subtitle text="Find people near you & Connect" />
-            <Paragraph
-              maxWidth="sm"
-              size="xs"
-              text="Create a  target  wherever on the map, specify
+            <h1 className="mb-4 font-bold uppercase">Target MVD</h1>
+            <h2 className="mb-2 font-semibold">Find people near you & connect</h2>
+            <p className="max-w-sm">
+              Create a  target  wherever on the map, specify
               your interest: Travel, Dating, Music, etc and start conecting
-              with others who share your interest."
-            />
+              with others who share your interest.
+            </p>
           </>
         )}
         <form onSubmit={handleSubmit(onSubmit)} className="w-full mt-8 mb-4 md:w-[250px]  space-y-7">
@@ -88,6 +91,6 @@ function LogIn() {
       <PhoneSection />
     </section>
   );
-}
+};
 
 export default LogIn;

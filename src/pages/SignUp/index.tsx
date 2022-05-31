@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { signUpSchema } from '../../schemas';
 import {
-  Button, InputField, SelectInput, PhoneSection, Title,
+  Button, InputField, SelectInput, PhoneSection,
 } from '../../components/common';
 import { genderOptions, RequestStatus, RouterPaths } from '../../constants';
 import { SignUpInputsType } from '../../types/userInputsTypes';
@@ -15,7 +15,7 @@ import { getFormErrors } from '../../utils/getFormErrors';
 import useAuthentication from '../../hooks/useAuthentication';
 import { AppDispatch } from '../../state/store';
 
-function SignUp() {
+const SignUp = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthentication();
@@ -45,7 +45,7 @@ function SignUp() {
   return (
     <section className="flex h-full">
       <div className="text-center bg-white half-section">
-        <Title text="Sign Up" />
+        <h1 className="font-bold uppercase">Sign Up</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full mt-8 mb-4 md:w-[250px] space-y-7">
           <InputField
             id="username"
@@ -92,6 +92,6 @@ function SignUp() {
       <PhoneSection />
     </section>
   );
-}
+};
 
 export default SignUp;
