@@ -7,12 +7,10 @@ interface Props {
     lineHeight?: number,
     fontWeight?: 'normal' | 'semibold' | 'bold',
 }
-function Paragraph({
+const Paragraph = ({
   text, size = 'sm', maxWidth = 'full', lineHeight = 7, fontWeight = 'normal',
-}: Props) {
-  return (
-    <p className={cn(`max-w-${maxWidth}`, `text-${size}`, `leading-${lineHeight}`, `font-${fontWeight}`)}>{text}</p>
-  );
-}
+}: Props) => (
+  <p className={cn(`max-w-${maxWidth}`, `text-${size}`, `leading-${lineHeight}`, `font-${fontWeight}`)}>{text}</p>
+);
 
 export default Paragraph;

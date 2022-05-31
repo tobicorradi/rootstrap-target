@@ -5,7 +5,7 @@ import { Button, Paragraph } from '../../components/common';
 import { logOut } from '../../state/actions/userActions';
 import useAuthentication from '../../hooks/useAuthentication';
 
-function Home() {
+const Home = () => {
   const dispatch = useDispatch();
   const { username } = useAuthentication();
 
@@ -32,6 +32,6 @@ function Home() {
       />
     </>
   );
-}
+};
 
 export default Home;

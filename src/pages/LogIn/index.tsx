@@ -16,7 +16,7 @@ import useAuthentication from '../../hooks/useAuthentication';
 import { AppDispatch } from '../../state/store';
 import useVisitor from '../../hooks/useVisitor';
 
-function LogIn() {
+const LogIn = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const hasVisitedBefore = useVisitor();
@@ -89,6 +89,6 @@ function LogIn() {
       <PhoneSection />
     </section>
   );
-}
+};
 
 export default LogIn;

@@ -4,7 +4,7 @@ import {
 } from '../../components/common';
 import { RouterPaths } from '../../constants';
 
-function Welcome() {
+const Welcome = () => {
   const navigate = useNavigate();
 
   return (
@@ -35,6 +35,6 @@ function Welcome() {
       />
     </>
   );
-}
+};
 
 export default Welcome;

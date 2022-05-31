@@ -9,16 +9,14 @@ interface Props {
     placeholder?: string;
     register?: UseFormRegisterReturn;
 }
-function InputField({
+const InputField = ({
   label, type = 'text', id, placeholder, register, error,
-}: Props) {
-  return (
-    <div className="flex flex-col">
-      <label className="label" htmlFor={id}>{label}</label>
-      <input {...register} placeholder={placeholder} className={cn('input', { 'error-input': error })} id={id} type={type} />
-      {error && <span className="error-message">{error}</span>}
-    </div>
-  );
-}
+}: Props) => (
+  <div className="flex flex-col">
+    <label className="label" htmlFor={id}>{label}</label>
+    <input {...register} placeholder={placeholder} className={cn('input', { 'error-input': error })} id={id} type={type} />
+    {error && <span className="error-message">{error}</span>}
+  </div>
+);
 
 export default InputField;

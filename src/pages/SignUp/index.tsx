@@ -15,7 +15,7 @@ import { getFormErrors } from '../../utils/getFormErrors';
 import useAuthentication from '../../hooks/useAuthentication';
 import { AppDispatch } from '../../state/store';
 
-function SignUp() {
+const SignUp = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthentication();
@@ -92,6 +92,6 @@ function SignUp() {
       <PhoneSection />
     </section>
   );
-}
+};
 
 export default SignUp;

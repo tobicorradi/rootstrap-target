@@ -8,12 +8,10 @@ interface Props {
   variant: 'primary' | 'secondary' | 'subtle';
   onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
-function Button({
+const Button = ({
   text, type = 'button', variant = 'primary', onClick, maxWidth = 'w-full',
-}: Props) {
-  return (
-    <button onClick={onClick} type={type} className={cn('btn', `btn-${variant}`, maxWidth)}>{text}</button>
-  );
-}
+}: Props) => (
+  <button onClick={onClick} type={type} className={cn('btn', `btn-${variant}`, maxWidth)}>{text}</button>
+);
 
 export default Button;
