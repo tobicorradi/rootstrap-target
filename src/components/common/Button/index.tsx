@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 
 interface Props {
   text: string;
@@ -11,7 +12,7 @@ function Button({
   text, type = 'button', variant = 'primary', onClick, maxWidth = 'w-full',
 }: Props) {
   return (
-    <button onClick={onClick} type={type} className={`btn btn-${variant} ${maxWidth}`}>{text}</button>
+    <button onClick={onClick} type={type} className={cn('btn', `btn-${variant}`, maxWidth)}>{text}</button>
   );
 }
 

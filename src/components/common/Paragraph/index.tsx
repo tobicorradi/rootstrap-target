@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 interface Props {
     text: string,
     size?: string,
@@ -9,7 +11,7 @@ function Paragraph({
   text, size = 'sm', maxWidth = 'full', lineHeight = 7, fontWeight = 'normal',
 }: Props) {
   return (
-    <p className={`max-w-${maxWidth} text-${size} leading-${lineHeight} font-${fontWeight}`}>{text}</p>
+    <p className={cn(`max-w-${maxWidth}`, `text-${size}`, `leading-${lineHeight}`, `font-${fontWeight}`)}>{text}</p>
   );
 }
 

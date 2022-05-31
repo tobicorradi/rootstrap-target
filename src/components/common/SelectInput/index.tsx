@@ -1,4 +1,5 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
+import cn from 'classnames';
 
 interface Props {
     id: string;
@@ -19,7 +20,7 @@ function SelectInput({
   return (
     <div className="flex flex-col">
       <label className="label" htmlFor={id}>{label}</label>
-      <select {...register} className={`uppercase appearance-none input ${error ? 'error-input' : ''}`} id={id}>
+      <select {...register} className={cn('uppercase', 'appearance-none', 'input', { 'error-input': error })} id={id}>
         <option disabled selected value="">{placeholder}</option>
         {optionValues?.map((option) => (
           <option key={option.id} value={option.value}>{option.text}</option>
