@@ -4,3 +4,5 @@ export { default as RequestStatus } from './requestStatus';
 export { default as RouterPaths } from './routerPaths';
 export { default as ThunkActions } from './thunkActions';
 export { default as UserEndPoints } from './userEndpoints';
+export { default as newTargetIcon } from './newTargetIcon';
+export { default as TargetTopics } from './targetTopics';

@@ -17,7 +17,7 @@ interface OptionObject {
 const SelectInput = ({
   label, id, placeholder, optionValues, register, error,
 }: Props) => (
-  <div className="flex flex-col">
+  <div className="flex flex-col w-full">
     <label className="label" htmlFor={id}>{label}</label>
     <select {...register} className={cn('uppercase', 'appearance-none', 'input', { 'error-input': error })} id={id}>
       <option disabled selected value="">{placeholder}</option>

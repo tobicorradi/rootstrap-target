@@ -25,3 +25,15 @@ export const logInSchema = yup.object().shape({
     .required('Password is required')
     .min(8, 'Password length should be at least 8 characters'),
 });
+
+export const createTargetSchema = yup.object().shape({
+  area: yup
+    .string()
+    .required('Area is required'),
+  title: yup
+    .string()
+    .required('Title is required'),
+  topic: yup
+    .string()
+    .required('Topic is required'),
+});
