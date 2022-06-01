@@ -1,5 +1,5 @@
 export interface CreateTargetTypes{
-    area: string;
+    radius: string;
     title: string;
     topic: string;
 }

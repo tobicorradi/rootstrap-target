@@ -27,9 +27,9 @@ export const logInSchema = yup.object().shape({
 });
 
 export const createTargetSchema = yup.object().shape({
-  area: yup
+  radius: yup
     .string()
-    .required('Area is required'),
+    .required('Radius is required'),
   title: yup
     .string()
     .required('Title is required'),

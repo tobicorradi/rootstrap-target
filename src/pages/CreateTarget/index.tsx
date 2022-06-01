@@ -1,14 +1,19 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm, Controller } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { Button, InputField, SelectInput } from '../../components/common';
 import { TargetTopics } from '../../constants';
 import { createTargetSchema } from '../../schemas';
+import { newTargetFormData } from '../../state/actions/targetAction';
 import { CreateTargetTypes } from '../../types/createTargetTypes';
 
 const CreateTarget = () => {
+  const dispatch = useDispatch();
   const {
+    control,
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<CreateTargetTypes>({ resolver: yupResolver(createTargetSchema) });
 
@@ -16,16 +21,27 @@ const CreateTarget = () => {
     console.log(data);
   };
 
+  const handleChange = (e) => {
+    dispatch(newTargetFormData(e.target.value));
+    setValue('radius', e.target.value);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-8">
       <div>Specify area length</div>
-      <InputField
-        id="area"
-        type="number"
-        label="Specify area length"
-        placeholder="200m"
-        register={register('area')}
-        error={errors.area?.message}
+      <Controller
+        control={control}
+        name="radius"
+        render={() => (
+          <InputField
+            id="radius"
+            type="number"
+            label="Specify area length"
+            placeholder="200m"
+            onChange={handleChange}
+            error={errors.radius?.message}
+          />
+        )}
       />
       <InputField
         id="title"
