@@ -29,19 +29,13 @@ const CreateTarget = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-8">
       <div>Specify area length</div>
-      <Controller
-        control={control}
-        name="radius"
-        render={() => (
-          <InputField
-            id="radius"
-            type="number"
-            label="Specify area length"
-            placeholder="200m"
-            onChange={handleChange}
-            error={errors.radius?.message}
-          />
-        )}
+      <InputField
+        id="radius"
+        type="number"
+        label="Specify area length"
+        placeholder="200m"
+        onChange={handleChange}
+        error={errors.radius?.message}
       />
       <InputField
         id="title"
@@ -58,7 +52,6 @@ const CreateTarget = () => {
         optionValues={TargetTopics}
         register={register('topic')}
         error={errors.topic?.message}
-
       />
       <Button text="Save Target" type="submit" variant="primary" />
     </form>
