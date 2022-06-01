@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button, InputField, SelectInput } from '../../components/common';
 import { TargetTopics } from '../../constants';
 import { createTargetSchema } from '../../schemas';
@@ -12,7 +12,7 @@ const CreateTarget = () => {
     formState: { errors },
   } = useForm<CreateTargetTypes>({ resolver: yupResolver(createTargetSchema) });
 
-  const onSubmit = (data) => {
+  const onSubmit: SubmitHandler<CreateTargetTypes> = (data) => {
     console.log(data);
   };
 
