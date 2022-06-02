@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { targetSectionIcon } from '../../assets';
 import { Button, InputField, SelectInput } from '../../components/common';
 import { RouterPaths, TargetTopics } from '../../constants';
 import { createTargetSchema } from '../../schemas';
@@ -44,8 +45,11 @@ const CreateTarget = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-8">
-      <div>Specify area length</div>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full space-y-8">
+      <div className="mb-4">
+        <img className="mx-auto mb-3" src={targetSectionIcon} alt="" />
+        <h4 className="uppercase text-separated">Create new target</h4>
+      </div>
       <InputField
         id="radius"
         type="number"

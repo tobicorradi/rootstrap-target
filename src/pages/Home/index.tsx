@@ -14,9 +14,9 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="h-full">
       <div>
-        <img className="mb-4" src={userIcon} alt="User profile" />
+        <img className="mx-auto" src={userIcon} alt="User profile" />
         <p>{username}</p>
         <Button
           text="Logout"
@@ -26,7 +26,7 @@ const Home = () => {
         />
       </div>
       <h2 className="font-semibold">Create your first target by clicking wherever on the map.</h2>
-    </>
+    </div>
   );
 };
 
