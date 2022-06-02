@@ -15,16 +15,6 @@ const initialState = {
         topic_id: 2,
       },
     },
-    {
-      target: {
-        id: 3,
-        title: 'new target',
-        lat: -34.60881321702712,
-        lng: -58.4447162690486,
-        radius: 163,
-        topic_id: 2,
-      },
-    },
   ],
   newTarget: {
     radius: 100,

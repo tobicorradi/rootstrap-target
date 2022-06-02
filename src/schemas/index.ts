@@ -28,7 +28,7 @@ export const logInSchema = yup.object().shape({
 
 export const createTargetSchema = yup.object().shape({
   radius: yup
-    .string()
+    .number()
     .required('Radius is required'),
   title: yup
     .string()
@@ -36,4 +36,10 @@ export const createTargetSchema = yup.object().shape({
   topic: yup
     .string()
     .required('Topic is required'),
+  lat: yup
+    .number()
+    .required('You need to place a marker by clicking wherever on the map.'),
+  lng: yup
+    .number()
+    .required('You need to place a marker by clicking wherever on the map.'),
 });

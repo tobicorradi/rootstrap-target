@@ -1,27 +1,44 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { SubmitHandler, useForm, Controller } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button, InputField, SelectInput } from '../../components/common';
-import { TargetTopics } from '../../constants';
+import { RouterPaths, TargetTopics } from '../../constants';
 import { createTargetSchema } from '../../schemas';
 import { newTargetFormData } from '../../state/actions/targetAction';
+import { newTargetSelector } from '../../state/reducers/targetReducer';
 import { CreateTargetTypes } from '../../types/createTargetTypes';
 
 const CreateTarget = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { lat, lng } = useSelector(newTargetSelector);
+
   const {
-    control,
     register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm<CreateTargetTypes>({ resolver: yupResolver(createTargetSchema) });
 
+  useEffect(() => {
+    register('lng');
+    register('lat');
+  }, []);
+
+  useEffect(() => {
+    setValue('lng', lng);
+    setValue('lat', lat);
+  }, [lat, lng]);
+
   const onSubmit: SubmitHandler<CreateTargetTypes> = (data) => {
+    // eslint-disable-next-line no-console
     console.log(data);
+    navigate(RouterPaths.HOME);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { value: string; }; }) => {
     dispatch(newTargetFormData(e.target.value));
     setValue('radius', e.target.value);
   };
