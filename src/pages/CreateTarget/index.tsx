@@ -34,8 +34,7 @@ const CreateTarget = () => {
   }, [lat, lng]);
 
   const onSubmit: SubmitHandler<CreateTargetTypes> = (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    // TODO: Dispatch new target.
     navigate(RouterPaths.HOME);
   };
 
@@ -72,6 +71,7 @@ const CreateTarget = () => {
         placeholder="What do you want to talk about?"
         optionValues={TargetTopics}
         register={register('topic')}
+        // TODO: Get topics from API
         error={errors.topic?.message}
       />
       <Button text="Save Target" type="submit" variant="primary" />
