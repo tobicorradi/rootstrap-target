@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { newTargetCoordinates, newTargetFormData } from '../actions/targetAction';
 import type { RootState } from '../store';
 

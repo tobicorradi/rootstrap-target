@@ -7,5 +7,4 @@ export { default as playStoreIcon } from './playStoreIcon.svg';
 export { default as twitterIcon } from './twitterIcon.svg';
 export { default as userIcon } from './userIcon.svg';
 export { default as locationIcon } from './locationIcon.svg';
-export { default as emptyTargetIcon } from './emptyTargetIcon.svg';
 export { default as targetSectionIcon } from './targetSectionIcon.svg';
