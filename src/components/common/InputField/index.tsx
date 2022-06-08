@@ -5,14 +5,13 @@ interface Props {
     id: string;
     type: string;
     label: string;
-    unit?: string;
     error?: string;
     placeholder?: string;
     register?: UseFormRegisterReturn;
     onChange?: (e:any) => void
 }
 const InputField = ({
-  label, type = 'text', id, placeholder, register, error, unit, onChange,
+  label, type = 'text', id, placeholder, register, error, onChange,
 }: Props) => (
   <div className="flex flex-col w-full">
     <label className="label" htmlFor={id}>{label}</label>
