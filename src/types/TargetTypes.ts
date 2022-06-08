@@ -1,4 +1,4 @@
-export interface CreateTargetTypes{
+export interface TargetTypes{
     radius: string;
     title: string;
     topic: string;

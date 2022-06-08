@@ -9,7 +9,7 @@ import { RouterPaths, TargetTopics } from '../../constants';
 import { createTargetSchema } from '../../schemas';
 import { newTargetFormData } from '../../state/actions/targetAction';
 import { newTargetSelector } from '../../state/reducers/targetReducer';
-import { CreateTargetTypes } from '../../types/createTargetTypes';
+import { TargetTypes } from '../../types/TargetTypes';
 
 const CreateTarget = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const CreateTarget = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<CreateTargetTypes>({ resolver: yupResolver(createTargetSchema) });
+  } = useForm<TargetTypes>({ resolver: yupResolver(createTargetSchema) });
 
   useEffect(() => {
     register('lng');
@@ -33,7 +33,7 @@ const CreateTarget = () => {
     setValue('lat', lat);
   }, [lat, lng]);
 
-  const onSubmit: SubmitHandler<CreateTargetTypes> = (data) => {
+  const onSubmit: SubmitHandler<TargetTypes> = (data) => {
     // TODO: Dispatch new target.
     navigate(RouterPaths.HOME);
   };

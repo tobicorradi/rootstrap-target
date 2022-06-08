@@ -6,11 +6,11 @@ import type { RootState } from '../store';
 const initialState = {
   targets: [],
   newTarget: {
-    radius: 100,
-    title: '',
-    id_topic: '',
-    lat: 0,
-    lng: 0,
+    radius: null,
+    title: null,
+    id_topic: null,
+    lat: null,
+    lng: null,
   },
 };
 

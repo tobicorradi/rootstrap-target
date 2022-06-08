@@ -19,7 +19,7 @@ const NewTarget = () => {
     });
   }, []);
 
-  return <Marker position={[lat, lng]} />;
+  return lat && lng && <Marker position={[lat, lng]} />;
 };
 
 export default NewTarget;

@@ -15,18 +15,20 @@ const Map = () => {
     <MapContainer center={[51.505, -0.09]} zoom={17} scrollWheelZoom>
       <TileLayer url={import.meta.env.VITE_MAP_URL} />
       <LocationMarker />
+
       {newTarget && (
         <>
           <NewTarget />
           <Circle
             weight={0}
-            radius={newTarget.radius}
+            radius={newTarget.radius || 0}
             fillOpacity={0.7}
             fillColor="#EFC638"
-            center={[newTarget.lat, newTarget.lng]}
+            center={[newTarget.lat || 0, newTarget.lng || 0]}
           />
         </>
       )}
+
       {targets && targets?.map(({ target: { lat, lng, radius } }) => (
         <>
           <Marker position={[lat, lng]} />
