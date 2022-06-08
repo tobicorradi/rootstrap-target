@@ -4,18 +4,7 @@ import { newTargetCoordinates, newTargetFormData } from '../actions/targetAction
 import type { RootState } from '../store';
 
 const initialState = {
-  targets: [
-    {
-      target: {
-        id: 3,
-        title: 'new target',
-        lat: -34.60558124333073,
-        lng: -58.45071422798693,
-        radius: 234,
-        topic_id: 2,
-      },
-    },
-  ],
+  targets: [],
   newTarget: {
     radius: 100,
     title: '',
