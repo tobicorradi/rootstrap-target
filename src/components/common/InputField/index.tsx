@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { ChangeEvent } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
     error?: string;
     placeholder?: string;
     register?: UseFormRegisterReturn;
-    onChange?: (e:any) => void
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 const InputField = ({
   label, type = 'text', id, placeholder, register, error, onChange,
