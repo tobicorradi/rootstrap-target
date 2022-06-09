@@ -1,45 +1,26 @@
-import {
-  Circle,
-  MapContainer, Marker, TileLayer,
-} from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useSelector } from 'react-redux';
 import LocationMarker from '../LocationMarker';
 import NewTarget from '../NewTarget';
-import { newTargetSelector, targetsSelector } from '../../../state/reducers/targetReducer';
+import { targetsSelector } from '../../../state/reducers/targetReducer';
+import Target from '../Target';
 
 const Map = () => {
   const targets = useSelector(targetsSelector);
-  const newTarget = useSelector(newTargetSelector);
   return (
     <MapContainer center={[51.505, -0.09]} zoom={17} scrollWheelZoom>
       <TileLayer url={import.meta.env.VITE_MAP_URL} />
       <LocationMarker />
-
-      {newTarget && (
-        <>
-          <NewTarget />
-          <Circle
-            weight={0}
-            radius={newTarget.radius || 0}
-            fillOpacity={0.7}
-            fillColor="#EFC638"
-            center={[newTarget.lat || 0, newTarget.lng || 0]}
-          />
-        </>
-      )}
-
+      <NewTarget />
       {targets && targets?.map(({ target: { lat, lng, radius } }) => (
-        <>
-          <Marker position={[lat, lng]} />
-          <Circle
-            weight={0}
-            radius={radius}
-            fillOpacity={0.7}
-            fillColor="#EFC638"
-            center={[lat, lng]}
-          />
-        </>
+        <Target
+          lat={lat}
+          lng={lng}
+          radius={radius}
+          fillColor="#EFC638"
+          key={`${lat}-${lng}`}
+        />
       ))}
     </MapContainer>
   );
