@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Circle, Marker, useMap } from 'react-leaflet';
-import { customLocationIcon } from '../../../constants';
+import { Colors, customLocationIcon } from '../../../constants';
 
 const LocationMarker = () => {
   const map = useMap();
@@ -19,7 +19,7 @@ const LocationMarker = () => {
         weight={2}
         radius={34}
         fillOpacity={0.7}
-        color="#EFC638"
+        color={Colors.YELLOW}
         fillColor="#ffffff"
         center={position}
       />

@@ -5,6 +5,7 @@ import LocationMarker from '../LocationMarker';
 import NewTarget from '../NewTarget';
 import { targetsSelector } from '../../../state/reducers/targetReducer';
 import Target from '../Target';
+import { Colors } from '../../../constants';
 
 const Map = () => {
   const targets = useSelector(targetsSelector);
@@ -18,7 +19,7 @@ const Map = () => {
           lat={lat}
           lng={lng}
           radius={radius}
-          fillColor="#EFC638"
+          fillColor={Colors.YELLOW}
           key={`${lat}-${lng}`}
         />
       ))}

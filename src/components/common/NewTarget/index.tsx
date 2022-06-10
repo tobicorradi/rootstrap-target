@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { RouterPaths } from '../../../constants';
+import { RouterPaths, Colors } from '../../../constants';
 import { newTargetCoordinates } from '../../../state/actions/targetAction';
 import { newTargetSelector } from '../../../state/reducers/targetReducer';
-
 import Target from '../Target';
 
 const NewTarget = () => {
@@ -26,7 +25,7 @@ const NewTarget = () => {
       lat={lat}
       lng={lng}
       radius={radius || 0}
-      fillColor="#EFC638"
+      fillColor={Colors.YELLOW}
     />
   );
 };
