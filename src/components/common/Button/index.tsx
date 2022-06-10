@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 interface Props {
   text: string;
-  type: string;
+  type: 'button' | 'submit' |'reset';
   maxWidth?: string;
   variant: 'primary' | 'secondary' | 'subtle';
   onClick?: MouseEventHandler<HTMLButtonElement>
