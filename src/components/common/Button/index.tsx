@@ -1,12 +1,12 @@
-import React from 'react';
+import { MouseEventHandler } from 'react';
 import cn from 'classnames';
 
 interface Props {
   text: string;
-  type: string;
+  type: 'button' | 'submit' |'reset';
   maxWidth?: string;
   variant: 'primary' | 'secondary' | 'subtle';
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  onClick?: MouseEventHandler<HTMLButtonElement>
 }
 const Button = ({
   text, type = 'button', variant = 'primary', onClick, maxWidth = 'w-full',

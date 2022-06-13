@@ -2,6 +2,7 @@ import SignUp from '../pages/SignUp';
 import LogIn from '../pages/LogIn';
 import Home from '../pages/Home';
 import Welcome from '../pages/Welcome';
+import CreateTarget from '../pages/CreateTarget';
 import { RouteType } from '../types/routesTypes';
 import { RouterPaths } from '../constants';
 
@@ -15,6 +16,12 @@ const routes: Array<RouteType> = [
   {
     path: RouterPaths.WELCOME,
     component: <Welcome />,
+    private: true,
+    exact: true,
+  },
+  {
+    path: RouterPaths.CREATE_TARGET,
+    component: <CreateTarget />,
     private: true,
     exact: true,
   },

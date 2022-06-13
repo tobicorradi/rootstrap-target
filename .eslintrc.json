@@ -29,6 +29,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "react/button-has-type": "off",
         "react/require-default-props": "off",
         "react/jsx-props-no-spreading": "off",
         "no-unused-vars": "off",
