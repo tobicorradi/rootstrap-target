@@ -1,14 +1,20 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import { NewTargetTypes, TargetTypes } from '../../types/TargetTypes';
 import { newTargetCoordinates, newTargetFormData } from '../actions/targetAction';
 import type { RootState } from '../store';
 
-const initialState = {
+interface initialTargetState {
+  targets: TargetTypes[],
+  newTarget: NewTargetTypes
+}
+
+const initialState: initialTargetState = {
   targets: [],
   newTarget: {
     radius: null,
     title: null,
-    id_topic: null,
+    topic_id: null,
     lat: null,
     lng: null,
   },
