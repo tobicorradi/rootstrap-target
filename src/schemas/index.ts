@@ -33,8 +33,8 @@ export const createTargetSchema = yup.object().shape({
   title: yup
     .string()
     .required('Title is required'),
-  topic: yup
-    .string()
+  topic_id: yup
+    .number()
     .required('Topic is required'),
   lat: yup
     .number()

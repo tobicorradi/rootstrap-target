@@ -11,7 +11,7 @@ interface Props {
 }
 interface OptionObject {
     id: number;
-    value: string;
+    value: string | number;
     text: string;
 }
 const SelectInput = ({

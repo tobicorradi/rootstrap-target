@@ -7,7 +7,7 @@ import { targetSectionIcon } from '../../assets';
 import { Button, InputField, SelectInput } from '../../components/common';
 import { RouterPaths, TargetTopics } from '../../constants';
 import { createTargetSchema } from '../../schemas';
-import { newTargetFormData } from '../../state/actions/targetAction';
+import { newTargetFormData, create } from '../../state/actions/targetAction';
 import { newTargetSelector } from '../../state/reducers/targetReducer';
 import { TargetTypes } from '../../types/TargetTypes';
 
@@ -35,6 +35,8 @@ const CreateTarget = () => {
 
   const onSubmit: SubmitHandler<TargetTypes> = (data) => {
     // TODO: Dispatch new target.
+    console.log(data);
+    dispatch(create(data));
     navigate(RouterPaths.HOME);
   };
 
@@ -70,9 +72,9 @@ const CreateTarget = () => {
         label="Select a topic"
         placeholder="What do you want to talk about?"
         optionValues={TargetTopics}
-        register={register('topic')}
+        register={register('topic_id')}
         // TODO: Get topics from API
-        error={errors.topic?.message}
+        error={errors.topic_id?.message}
       />
       <Button text="Save Target" type="submit" variant="primary" />
     </form>

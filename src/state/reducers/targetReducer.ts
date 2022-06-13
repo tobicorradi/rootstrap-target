@@ -1,7 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { NewTargetTypes, TargetTypes } from '../../types/TargetTypes';
-import { newTargetCoordinates, newTargetFormData } from '../actions/targetAction';
+import {
+  newTargetCoordinates, newTargetFormData,
+  createRejected,
+} from '../actions/targetAction';
 import type { RootState } from '../store';
 
 interface initialTargetState {
@@ -31,6 +34,9 @@ export const targetSlice = createSlice({
     },
     [newTargetFormData.toString()]: (state, { payload }) => {
       state.newTarget.radius = payload;
+    },
+    [createRejected.toString()]: (state, { payload }) => {
+      console.log(payload);
     },
   },
 });
