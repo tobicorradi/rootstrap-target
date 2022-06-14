@@ -8,8 +8,6 @@ export const create = createAsyncThunk(
   async (target: TargetTypes, thunkAPI) => {
     try {
       const { data } = await targetService.create({ target });
-      console.log({ data });
-
       return data;
     } catch ({ response: { data } }) {
       return thunkAPI.rejectWithValue(data);

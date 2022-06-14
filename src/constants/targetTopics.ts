@@ -10,7 +10,7 @@ const TargetTopics: Array<Topic> = [
     id: 1,
     icon: 'test.svg',
     text: 'Football',
-    value: 3,
+    value: 2,
   },
 ];
 

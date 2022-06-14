@@ -10,6 +10,6 @@ export interface NewTargetTypes{
     radius: null | string;
     title: null | string;
     topic_id: null | number;
-    lat: null | string;
-    lng: null | string;
+    lat: null | number;
+    lng: null | number;
 }
