@@ -1,5 +1,5 @@
 export interface TargetTypes{
-    radius: string;
+    radius: number;
     title: string;
     topic_id: number;
     lat: number;
@@ -7,7 +7,7 @@ export interface TargetTypes{
 }
 
 export interface NewTargetTypes{
-    radius: null | string;
+    radius: null | number;
     title: null | string;
     topic_id: null | number;
     lat: null | number;
