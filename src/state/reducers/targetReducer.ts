@@ -4,6 +4,7 @@ import { NewTargetTypes, TargetTypes } from '../../types/TargetTypes';
 import {
   newTargetCoordinates, newTargetFormData,
   createRejected,
+  listFullfilled,
 } from '../actions/targetAction';
 import type { RootState } from '../store';
 
@@ -37,6 +38,9 @@ export const targetSlice = createSlice({
     },
     [createRejected.toString()]: (state, { payload }) => {
       console.log(payload);
+    },
+    [listFullfilled.toString()]: (state, { payload }) => {
+      state.targets = payload.targets;
     },
   },
 });

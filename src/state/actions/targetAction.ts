@@ -7,10 +7,23 @@ export const create = createAsyncThunk(
   TargetActions.CREATE,
   async (target: TargetTypes, thunkAPI) => {
     try {
-      const { data } = await targetService.create({ target });
+      await targetService.create({ target });
+      const { data } = await targetService.list();
       return data;
     } catch ({ response: { data } }) {
       return thunkAPI.rejectWithValue(data);
+    }
+  },
+);
+
+export const list = createAsyncThunk(
+  TargetActions.LIST,
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await targetService.list();
+      return data;
+    } catch ({ response: { data } }) {
+      throw thunkAPI.rejectWithValue(data);
     }
   },
 );
@@ -20,6 +33,12 @@ export const {
   pending: createPending,
   rejected: createRejected,
 } = create;
+
+export const {
+  fulfilled: listFullfilled,
+  pending: listPending,
+  rejected: listRejected,
+} = list;
 
 export const newTargetCoordinates = createAction('target/newTargetCoordinates');
 

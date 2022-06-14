@@ -4,12 +4,14 @@ import { userIcon } from '../../assets';
 import { Button } from '../../components/common';
 import { logOut } from '../../state/actions/userActions';
 import useAuthentication from '../../hooks/useAuthentication';
+import { list } from '../../state/actions/targetAction';
 
 const Home = () => {
   const dispatch = useDispatch();
   const { username } = useAuthentication();
 
   useEffect(() => {
+    dispatch(list());
     localStorage.setItem('hasVisitedBefore', 'true');
   }, []);
 

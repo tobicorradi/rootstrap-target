@@ -6,6 +6,10 @@ class targetService {
   static create(target: { target: TargetTypes }) {
     return api.post(TargetEndpoints.CREATE, target);
   }
+
+  static list() {
+    return api.get(TargetEndpoints.LIST, { data: null });
+  }
 }
 
 export default targetService;
