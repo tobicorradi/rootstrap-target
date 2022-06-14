@@ -6,4 +6,5 @@ export { default as ThunkActions } from './thunkActions';
 export { default as UserEndPoints } from './userEndpoints';
 export { default as TargetEndpoints } from './targetEndpoints';
 export { default as TargetTopics } from './targetTopics';
+export { default as Http } from './http';
 export { default as Colors } from './colors';
