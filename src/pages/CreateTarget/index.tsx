@@ -7,12 +7,13 @@ import { targetSectionIcon } from '../../assets';
 import { Button, InputField, SelectInput } from '../../components/common';
 import { RouterPaths, TargetTopics } from '../../constants';
 import { createTargetSchema } from '../../schemas';
-import { newTargetFormData, create } from '../../state/actions/targetAction';
+import { newTargetFormData, create, list } from '../../state/actions/targetAction';
 import { newTargetSelector } from '../../state/reducers/targetReducer';
+import { AppDispatch } from '../../state/store';
 import { TargetTypes } from '../../types/TargetTypes';
 
 const CreateTarget = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const { lat, lng } = useSelector(newTargetSelector);
 
@@ -33,16 +34,15 @@ const CreateTarget = () => {
     setValue('lat', lat);
   }, [lat, lng]);
 
-  const onSubmit: SubmitHandler<TargetTypes> = (data) => {
-    // TODO: Dispatch new target.
-    console.log(data);
-    dispatch(create(data));
+  const onSubmit: SubmitHandler<TargetTypes> = async (data) => {
+    await dispatch(create(data)).unwrap();
+    dispatch(list());
     navigate(RouterPaths.HOME);
   };
 
   const handleChange = (e: { target: { value: string; }; }) => {
     dispatch(newTargetFormData(e.target.value));
-    setValue('radius', e.target.value);
+    setValue('radius', +e.target.value);
   };
 
   return (

@@ -20,14 +20,14 @@ const NewTarget = () => {
     });
   }, []);
 
-  return lat && lng && (
+  return lat && lng ? (
     <Target
       lat={lat}
       lng={lng}
       radius={radius || 0}
       fillColor={Colors.YELLOW}
     />
-  );
+  ) : null;
 };
 
 export default NewTarget;

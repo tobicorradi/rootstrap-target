@@ -8,9 +8,10 @@ import { targetsSelector } from '../../../state/reducers/targetReducer';
 import Target from '../Target';
 import { Colors } from '../../../constants';
 import { list } from '../../../state/actions/targetAction';
+import { AppDispatch } from '../../../state/store';
 
 const Map = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const targets = useSelector(targetsSelector);
 
   useEffect(() => {
