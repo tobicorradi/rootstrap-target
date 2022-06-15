@@ -1,19 +1,22 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import { RequestStatus } from '../../constants';
 import { NewTargetTypes, TargetTypes } from '../../types/TargetTypes';
 import {
   newTargetCoordinates, newTargetFormData,
   createRejected,
   listFullfilled,
+  createPending,
 } from '../actions/targetAction';
 import type { RootState } from '../store';
 
-interface initialTargetState {
+interface InitialTargetState {
   targets: TargetTypes[],
-  newTarget: NewTargetTypes
+  newTarget: NewTargetTypes,
+  status: null | RequestStatus.FULFILLED | RequestStatus.PENDING | RequestStatus.REJECTED
 }
 
-const initialState: initialTargetState = {
+const initialState: InitialTargetState = {
   targets: [],
   newTarget: {
     radius: null,
@@ -22,6 +25,11 @@ const initialState: initialTargetState = {
     lat: null,
     lng: null,
   },
+  status: null,
+};
+
+const pendingReducer = (state: InitialTargetState) => {
+  state.status = RequestStatus.PENDING;
 };
 
 export const targetSlice = createSlice({
@@ -36,6 +44,7 @@ export const targetSlice = createSlice({
     [newTargetFormData.toString()]: (state, { payload }) => {
       state.newTarget.radius = payload;
     },
+    [createPending.toString()]: pendingReducer,
     [createRejected.toString()]: (state, { payload }) => {
       console.log(payload);
     },
@@ -48,5 +57,7 @@ export const targetSlice = createSlice({
 export const targetsSelector = (state: RootState) => state.target.targets;
 
 export const newTargetSelector = (state: RootState) => state.target.newTarget;
+
+export const statusSelector = (state: RootState) => state.target.status;
 
 export default targetSlice.reducer;

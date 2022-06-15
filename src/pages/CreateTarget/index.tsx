@@ -1,21 +1,23 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { targetSectionIcon } from '../../assets';
 import { Button, InputField, SelectInput } from '../../components/common';
-import { RouterPaths, TargetTopics } from '../../constants';
+import { RequestStatus, RouterPaths, TargetTopics } from '../../constants';
 import { createTargetSchema } from '../../schemas';
 import { newTargetFormData, create, list } from '../../state/actions/targetAction';
-import { newTargetSelector } from '../../state/reducers/targetReducer';
+import { newTargetSelector, statusSelector } from '../../state/reducers/targetReducer';
 import { AppDispatch } from '../../state/store';
 import { TargetTypes } from '../../types/TargetTypes';
 
 const CreateTarget = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+  const status = useSelector(statusSelector);
   const { lat, lng } = useSelector(newTargetSelector);
+  const isRequestLoading = useMemo(() => status === RequestStatus.PENDING, [status]);
 
   const {
     register,
@@ -44,6 +46,11 @@ const CreateTarget = () => {
     dispatch(newTargetFormData(e.target.value));
     setValue('radius', +e.target.value);
   };
+
+  if (isRequestLoading) {
+    // TODO: Replace this with a component/loeader svg
+    return <div className="h-full">Loading...</div>;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full space-y-8">
